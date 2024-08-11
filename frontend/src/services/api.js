@@ -31,3 +31,24 @@ export const getUserProfile = async (token) => {
     headers: { Authorization: `Bearer ${token}` }
   });
 };
+
+
+// Get all products
+export const getProducts = async () => {
+    return await axios.get(`${API_URL}/products`);
+  };
+  
+  // Create a new product
+  export const createProduct = async (productData) => {
+    return await axios.post(`${API_URL}/products`, productData);
+  };
+  
+  // Update a product
+  export const updateProduct = async (id, productData) => {
+    return await axios.put(`${API_URL}/products/${id}`, productData);
+  };
+  
+  // Delete a product
+  export const deleteProduct = async (id) => {
+    return await axios.delete(`${API_URL}/products/${id}`);
+  };
