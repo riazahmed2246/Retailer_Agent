@@ -3,9 +3,9 @@ import React from 'react';
 const ManagerDashboard = () => {
   return (
     <div>
-      <h2>Manager Dashboard</h2>
-      <p>Welcome, Manager!</p>
-      {/* Add manager-specific content here */}
+      <h2>ManagerDashboard</h2>
+      <p>Welcome, Staff!</p>
+      {/* Add staff-specific content here */}
     </div>
   );
 };
