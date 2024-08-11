@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import registerRoutes from './routes/register.js';
 import loginRoutes from './routes/login.js';
 import adminRoutes from './routes/admin.js';
+import productRoutes from './routes/product.js';
 
 // Initialize Express
 const app = express();
@@ -32,6 +33,7 @@ app.use(cors({
 app.use('/api/v1', registerRoutes);
 app.use('/api/v1', loginRoutes);
 app.use('/api/v1', adminRoutes); // Use admin routes
+app.use('/api/v1', productRoutes);
 
 // Start the server
 const PORT = 5000;
