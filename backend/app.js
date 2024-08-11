@@ -29,6 +29,7 @@ app.use(cors({
 }));
 
 
+
 // Use the registration routes
 app.use('/api/v1', registerRoutes);
 app.use('/api/v1', loginRoutes);
