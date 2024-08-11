@@ -1,20 +1,22 @@
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'user'; // Use a secure key in production
+export const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
 
-export const authenticate = (req, res, next) => {
-  const token = req.headers['authorization']?.split(' ')[1]; // Assumes token is sent as "Bearer <token>"
+  if (!token) return res.status(401).json({ message: 'No token provided' });
 
-  if (!token) {
-    return res.status(401).json({ message: 'No token provided' });
-  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) return res.status(403).json({ message: 'Invalid token' });
 
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(403).json({ message: 'Failed to authenticate token' });
-    }
-
-    req.user = decoded; // Add user data to the request object
+    req.user = user; // Attach user information (including role) to request
     next();
   });
+};
+
+export const authorizeRoles = (...roles) => (req, res, next) => {
+  if (!roles.includes(req.user.role)) {
+    return res.status(403).json({ message: 'Access denied' });
+  }
+  next();
 };
