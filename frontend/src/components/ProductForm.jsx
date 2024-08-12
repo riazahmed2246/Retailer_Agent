@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './ProductForm.css';
 
 const ProductForm = ({ onCreate, onUpdate, selectedProduct, setSelectedProduct }) => {
   const [product, setProduct] = useState({
